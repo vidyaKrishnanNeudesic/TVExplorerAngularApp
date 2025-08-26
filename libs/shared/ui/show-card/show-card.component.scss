@@ -1,0 +1,135 @@
+.show-card {
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  background: white;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  }
+
+  &:focus-within {
+    outline: 2px solid #007bff;
+    outline-offset: 2px;
+  }
+}
+
+.show-card__image {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  display: block;
+}
+
+.show-card__placeholder {
+  width: 100%;
+  height: 300px;
+  background: #f8f9fa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed #dee2e6;
+}
+
+.show-card__placeholder-text {
+  color: #6c757d;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.show-card__content {
+  padding: 1rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.show-card__title {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: #212529;
+}
+
+.show-card__rating {
+  display: flex;
+  align-items: center;
+}
+
+.show-card__rating-value {
+  color: #ffc107;
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+.show-card__genres {
+  margin-top: auto;
+}
+
+.show-card__genres-text {
+  color: #6c757d;
+  font-size: 0.8rem;
+  line-height: 1.4;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .show-card__image,
+  .show-card__placeholder {
+    height: 200px;
+  }
+  
+  .show-card__content {
+    padding: 0.75rem;
+  }
+  
+  .show-card__title {
+    font-size: 1rem;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .show-card {
+    background: #2d3748;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    
+    &:hover {
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+    }
+  }
+  
+  .show-card__title {
+    color: #f7fafc;
+  }
+  
+  .show-card__placeholder {
+    background: #4a5568;
+    border-color: #718096;
+  }
+  
+  .show-card__placeholder-text {
+    color: #a0aec0;
+  }
+  
+  .show-card__genres-text {
+    color: #a0aec0;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .show-card {
+    border: 2px solid currentColor;
+  }
+  
+  .show-card__placeholder {
+    border-width: 3px;
+  }
+}
