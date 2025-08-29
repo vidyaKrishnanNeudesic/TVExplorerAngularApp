@@ -18,6 +18,19 @@
   }
 }
 
+.show-card__link {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+  height: 100%;
+  
+  &:focus {
+    outline: 2px solid #007bff;
+    outline-offset: 2px;
+  }
+}
+
 .show-card__image {
   width: 100%;
   height: 300px;

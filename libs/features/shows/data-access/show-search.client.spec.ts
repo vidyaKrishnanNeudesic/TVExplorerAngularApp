@@ -105,7 +105,11 @@ describe('mapShow', () => {
       rating: {
         average: 8.5
       },
-      summary: '<p>Test summary</p>'
+      summary: '<p>Test summary</p>',
+      schedule: {
+        time: '20:00',
+        days: ['Monday', 'Tuesday']
+      }
     };
 
     const result = mapShow(dto);
@@ -116,7 +120,11 @@ describe('mapShow', () => {
       genres: ['Drama', 'Comedy'],
       image: 'https://example.com/medium.jpg',
       rating: 8.5,
-      summary: '<p>Test summary</p>'
+      summary: '<p>Test summary</p>',
+      schedule: {
+        time: '20:00',
+        days: ['Monday', 'Tuesday']
+      }
     });
   });
 
@@ -135,7 +143,8 @@ describe('mapShow', () => {
       genres: [],
       image: undefined,
       rating: undefined,
-      summary: undefined
+      summary: undefined,
+      schedule: undefined
     });
   });
 
@@ -163,6 +172,43 @@ describe('mapShow', () => {
     const result = mapShow(dto);
 
     expect(result.rating).toBeUndefined();
+  });
+
+  it('should map schedule when present', () => {
+    const dto: ShowDto = {
+      id: 1,
+      name: 'Test Show',
+      genres: [],
+      schedule: {
+        time: '21:30',
+        days: ['Wednesday', 'Thursday']
+      }
+    };
+
+    const result = mapShow(dto);
+
+    expect(result.schedule).toEqual({
+      time: '21:30',
+      days: ['Wednesday', 'Thursday']
+    });
+  });
+
+  it('should handle partial schedule data', () => {
+    const dto: ShowDto = {
+      id: 1,
+      name: 'Test Show',
+      genres: [],
+      schedule: {
+        days: ['Friday']
+      }
+    };
+
+    const result = mapShow(dto);
+
+    expect(result.schedule).toEqual({
+      time: undefined,
+      days: ['Friday']
+    });
   });
 });
 
@@ -196,7 +242,8 @@ describe('mapShowSearchResult', () => {
       genres: ['Drama'],
       image: undefined,
       rating: undefined,
-      summary: undefined
+      summary: undefined,
+      schedule: undefined
     });
     expect(result[1]).toEqual({
       id: 2,
@@ -204,7 +251,8 @@ describe('mapShowSearchResult', () => {
       genres: ['Comedy'],
       image: undefined,
       rating: undefined,
-      summary: undefined
+      summary: undefined,
+      schedule: undefined
     });
   });
 
