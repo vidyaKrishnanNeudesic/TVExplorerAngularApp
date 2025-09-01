@@ -21,6 +21,10 @@ export interface ShowDto {
     average?: number;
   };
   summary?: string;
+  schedule?: {
+    time?: string;
+    days?: string[];
+  };
 }
 
 // Domain Models
@@ -31,6 +35,10 @@ export interface Show {
   genres: readonly string[];
   rating?: number;
   summary?: string;
+  schedule?: {
+    time?: string;
+    days?: readonly string[];
+  };
 }
 
 export interface ShowSearchResult {
@@ -49,6 +57,10 @@ export const mapShow = (dto: ShowDto): Show => ({
   genres: dto.genres ?? [],
   rating: dto.rating?.average ?? undefined,
   summary: dto.summary ?? undefined,
+  schedule: dto.schedule ? {
+    time: dto.schedule.time ?? undefined,
+    days: dto.schedule.days ?? []
+  } : undefined,
 });
 
 export const mapShowSearchResult = (searchResults: ShowSearchDto[]): Show[] => {
